@@ -1,4 +1,4 @@
-# SOC Tier 1 Triage Report - SOLUTION
+[# SOC Tier 1 Triage Report - SOLUTION
 
 ## Incident Details
 - **Alert ID**: 123456789-123456798
@@ -70,3 +70,5 @@ Multiple SQL injection attempts detected from IP 192.168.1.105 targeting /login.
   - IDS Rule 1000001 documentation
   - OWASP SQL Injection cheat sheet
   - Company incident response playbook
+](https://github.com/jdelvalle10/Mini-SOC01
+)<img width="729" height="80" alt="image" src="https://github.com/user-attachments/assets/a8f5c53c-f8df-45df-b649-b82e2011f956" />
