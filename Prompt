@@ -1,0 +1,97 @@
+ROLE
+You are a cybersecurity instructor building a hands-on SOC analyst triage exercise
+for students. Accuracy and internal consistency matter more than volume.
+
+GOAL
+Produce a self-contained, offline triage exercise modeled on a real SOC workflow:
+students receive a set of correlated log files plus an alert, perform triage, and
+document a decision. No internet, cloud services, or external tools required —
+everything is plain-text files a student can open in any editor.
+
+EXERCISE PARAMETERS  (fill these in)
+- Scenario / attack type:        [e.g., SQL injection against a login page]
+- Target system:                 [e.g., internal web server web01, 10.10.1.25]
+- Attacker source:               [e.g., single internal host 192.168.1.105]
+- SOC tier / audience:           [e.g., Tier 1 / intro undergraduate]
+- Difficulty:                    [Intro | Intermediate | Advanced]
+- Total exercise time:           [e.g., 120 minutes, split into 3 phases]
+- Log sources to include:        [pick 3–6: web server, firewall, IDS/IPS,
+                                  database, auth/access, Windows Security events,
+                                  DNS, proxy, EDR, email gateway]
+- Correct verdict:               [genuine incident that should escalate | false
+                                  positive | benign-but-suspicious]
+- Intentional detection gap?:    [Yes — one or more sources only partially logged
+                                  the attack, so the full scope is visible only by
+                                  correlation | No — all sources cover the full
+                                  window]
+- False-positive decoy?:         [Optional: include one benign event that looks
+                                  alarming at first glance, e.g., a vuln scanner or
+                                  a misconfigured health check]
+
+DELIVERABLES  (produce all of these as separate files)
+1. README.md — exercise overview, scenario brief, the triggering alert, phased
+   structure with timeboxes, learning objectives, a scoring rubric (categories +
+   point values summing to 100), and 4–6 discussion questions.
+2. One plain-text log file per chosen source, in a realistic format for that source.
+3. triage_report.md — a BLANK student template with empty sections to fill in
+   (incident details, per-source observations, threat assessment, decision,
+   recommendations). The README must reference this file by its exact filename.
+4. solution.md — the FACILITATOR ANSWER KEY (see requirements below).
+
+LOG REALISM AND CONSISTENCY  (non-negotiable)
+- Use one attacker identifier (IP/account/host) that a student can pivot on across
+  every source. It must appear, with matching timestamps, in each log that would
+  realistically have seen it.
+- Mix in legitimate "noise" traffic from other sources so the attacker does not
+  trivially stand out. Difficulty scales with how much noise and how many
+  distractors you add.
+- Timestamps across sources must line up. If two sources logged the same event,
+  their timestamps must match (to the second).
+- Payloads/indicators must be identical wherever they recur (same SQLi string, same
+  hash, same username) — no drift between how the web log and the IDS render the
+  same request.
+- If "intentional detection gap" is Yes: deliberately have the IDS/firewall/DB (or
+  whichever you choose) cover only PART of the attack window, while the primary
+  sources (web + auth, or equivalent) cover the FULL window. Document this gap
+  explicitly in the answer key as the main teaching point.
+- If "intentional detection gap" is No: every source must cover the full attack
+  window with consistent counts.
+
+ANSWER KEY REQUIREMENTS  (solution.md)
+- State the TRUE attack window (earliest to latest malicious activity across ALL
+  sources), not the window of whichever single source logged the least.
+- State EXACT counts that match the logs: total malicious requests/events, broken
+  down by type, per source. These numbers must be verifiable by grepping the files.
+- Per-source evidence summary: what each log shows and what it proves or fails to
+  prove. Call out any source that under-reports the attack.
+- Threat assessment with nuance: distinguish "did the attack technique execute?"
+  from "did the attacker achieve their end goal?" Do not flatten this to a single
+  word if the logs support a more precise reading.
+- Clear verdict (escalate / false positive / benign) with reasoning tied to specific
+  log evidence.
+- Recommendations: immediate, short-term, long-term.
+- Facilitator grading guidance that ties each rubric category to specific evidence,
+  and notes the difference between an average answer and a strong one.
+- Top of file: a note reminding the teacher to keep this key out of the
+  student-facing copy.
+
+WRITING STYLE
+- Write the README and answer-key prose like a human analyst, not a template:
+  varied sentence length, no filler transitions ("Furthermore," "Additionally"), no
+  generic padding. Tables and structured fields are fine where they aid clarity.
+
+SELF-VALIDATION BEFORE YOU FINISH  (required — do not skip)
+After generating all files, verify your own work by actually counting, not by
+estimating. Run code (or step through the files line by line) to confirm:
+  a) the attacker identifier appears in every source it should, with matching
+     timestamps;
+  b) the total malicious-event count and per-type breakdown stated in solution.md
+     EXACTLY match what is present in the log files;
+  c) the attack window in solution.md matches the earliest and latest malicious
+     timestamps across all logs;
+  d) every recurring payload/indicator is byte-for-byte identical across sources;
+  e) the README references the student template by its correct filename;
+  f) if a detection gap was requested, it is real in the data AND documented in the
+     key; if not requested, all sources cover the full window.
+Report the results of these checks to me. If any check fails, fix the files and
+re-run the checks before presenting the final exercise.
