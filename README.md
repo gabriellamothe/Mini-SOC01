@@ -8,7 +8,7 @@ Everything here is plain text. No internet, no cloud services, no special toolin
 
 You are a Tier 1 SOC analyst monitoring security alerts for the corporate network.At 14:32 your IDS pages you about possible SQL injection against an internal webserver. Your job is to triage the alert: confirm whether it is genuine, scope whatactually happened, and decide whether it goes up to Tier 2.
 
-The catch — and the skill this exercise is really testing — is that no single logtells the whole story. You will have to pivot on the attacker and correlate acrosssources to see the full picture.
+The catch — and the skill this exercise is really testing — is that no single logtells the whole story. You will have to pivot on the attacker and correlate across sources to see the full picture.
 
 ### Triggering Alert
 
@@ -78,7 +78,9 @@ By completing this exercise, students will be able to:
 
 ## Expected Outcomes
 
-A complete submission identifies the activity as SQL injection from a single host,preceded by a short burst of credential guessing, and shows that the attacker'srequests reached the database while no login actually succeeded. Strong submissionsgo further: they notice that the IDS, firewall, and database logs captured only thetail end of the activity, and that the full scope is visible only by correlating theweb server and authentication logs. The expected decision is to escalate — theinjection is confirmed and reached the data layer, even though no account wascompromised.
+A complete submission identifies the activity as SQL injection from a single host, preceded by a short burst of credential guessing, and shows that the attacker's requests reached the database while no login actually succeeded. 
+Strong submissionsgo further: they notice that the IDS, firewall, and database logs captured only the tail end of the activity, and that the full scope is visible only by correlating the web server and authentication logs. 
+The expected decision is to escalate — the injection is confirmed and reached the data layer, even though no account was compromised.
 
 ## Scoring Rubric
 
@@ -110,8 +112,8 @@ A complete submission identifies the activity as SQL injection from a single hos
     ├── triage_report.md       # Blank student template
     └── solution.md            # Instructor answer key — see note below
 
-> **Instructor note:** `solution.md` is the facilitator answer key. Remove it or moveit to a private location before distributing this exercise to students. It alsocontains grading guidance tied to the rubric above.
+> **Instructor note:** `solution.md` is the facilitator answer key. Remove it or moveit to a private location before distributing this exercise to students. It also contains grading guidance tied to the rubric above.
 
 ## License / Use
 
-Built as a classroom exercise. Free to use and adapt for educational purposes.Attribution appreciated.
+Built as a classroom exercise. Free to use and adapt for educational purposes. Attribution appreciated.
