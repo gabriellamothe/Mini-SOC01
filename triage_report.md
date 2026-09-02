@@ -4,12 +4,12 @@
 - **Alert ID**: 1
 - **Timestamp**: 14:32:17
 - **Source IP**: 192.168.1.105
-- **Destination IP**: 
-- **Severity**: 
+- **Destination IP**: 10.10.1.25
+- **Severity**: high
 
 ## Summary of Findings
 [Provide brief overview of what was discovered]
-
+I found that in the firewall logs the attacker was approved to go through and was able 
 ## Evidence Collected
 
 ### Web Server Logs
