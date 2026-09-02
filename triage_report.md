@@ -1,7 +1,7 @@
 # SOC Tier 1 Triage Report
 
 ## Incident Details
-- **Alert ID**: 
+- **Alert ID**: 1
 - **Timestamp**: 
 - **Source IP**: 
 - **Destination IP**: 
